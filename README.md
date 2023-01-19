@@ -15,16 +15,6 @@
 
 API는 Application Programming Interface(애플리케이션 프로그램 인터페이스)의 줄임말입니다. API의 맥락에서 애플리케이션이라는 단어는 고유한 기능을 가진 모든 소프트웨어를 나타냅니다. 인터페이스는 두 애플리케이션 간의 서비스 계약이라고 할 수 있습니다. 이 계약은 요청과 응답을 사용하여 두 애플리케이션이 서로 통신하는 방법을 정의합니다. API 문서에는 개발자가 이러한 요청과 응답을 구성하는 방법에 대한 정보가 들어 있습니다.
 
-def Future_Hisorical_data(self,stocks,time,start):
-        client=self.client
-        # client.futures_historical_klines(stocks, time,  start)
-        Price_data=pd.DataFrame(client.futures_historical_klines(stocks, time,  start))
-        # print(Price_data)
-        Price_data[0]=Price_data[0].apply(lambda x : datetime.fromtimestamp(x//1000))
-        Price_data=Price_data.iloc[:, :6]
-        Price_data.columns = ['Date', 'Open', 'High', 'Low', 'Close', 'Volume']
-        Price_data=Price_data.set_index('Date')
-        return Price_data
 
 ## 2) Websockets
 
