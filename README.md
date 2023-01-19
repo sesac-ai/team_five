@@ -13,14 +13,6 @@ import plotly.express as px
 import numpy as np
 import cufflinks as cf
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(['모델 1', '모델 2', '모델 3', '모델 4', '통계']) # tab 사전 설정.
-
-name = st.sidebar.selectbox('Name', ['BTC'])
-
-sevendayago = datetime.today() - timedelta(7)
-start_date = st.sidebar.date_input('Start date', sevendayago)
-end_date = st.sidebar.date_input('End date', datetime.today())
-
 with tab5:
         import pandas as pd 
 
@@ -37,7 +29,8 @@ with tab5:
         # st.write(df.head())
         df=df.iloc[:,0:]
         st.markdown('# 전략별 PnL')
-        st.line_chart(df, x= 'EntryTime', y= ['Yong', 'Yunseo', 'Seoho', 'Moon'], use_container_width=True)
+        st.line_chart(df, x= 'EntryTime', y= ['Yong', 'Yunseo', 'Seoho', 'Moon'], use_container_width=True)   
+
 
 ![주가 데이터](https://user-images.githubusercontent.com/111418464/213383014-9b83edf5-dc73-4e21-9c5e-f0757610cc42.PNG)
 
