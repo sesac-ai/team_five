@@ -4,17 +4,17 @@
 
 
 
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
-from cryptocmd import CmcScraper
-import plotly.express as px
-import numpy as np
-import cufflinks as cf
+        import streamlit as st
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        from datetime import datetime, timedelta
+        from cryptocmd import CmcScraper
+        import plotly.express as px
+        import numpy as np
+        import cufflinks as cf
 
-with tab5:
-        import pandas as pd 
+        with tab5:
+                import pandas as pd 
 
         st.write('# 비트코인 주가 데이터')
         scraper = CmcScraper(name, start_date.strftime('%d-%m-%Y'), end_date.strftime('%d-%m-%Y'))
