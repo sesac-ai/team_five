@@ -23,4 +23,6 @@ with tab5:
         st.markdown('# 전략별 PnL')
         st.line_chart(df, x= 'EntryTime', y= ['Yong', 'Yunseo', 'Seoho', 'Moon'], use_container_width=True)
 
+![주가 데이터](https://user-images.githubusercontent.com/111418464/213383014-9b83edf5-dc73-4e21-9c5e-f0757610cc42.PNG)
+
 ![전략별 PNL](https://user-images.githubusercontent.com/111418464/213382805-a0c2d919-ac9d-480e-8734-97173ad3daaf.PNG)
