@@ -37,7 +37,7 @@ WebSocekt은 서버와 클라이언트 양방향 연결이 이루어지는 통�
             print('소켓 시작')
             self.bot.send_message(self.Group_ID, f'소켓 시작.')
 
-# 3️⃣모델(익명으로)설명
+# 3️⃣모델
 ### 1. Model A
 
 RSI(상대강도지수)가 과매수구간에 돌입하면 진입,
