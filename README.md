@@ -4,6 +4,22 @@
 
 
 
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+from datetime import datetime, timedelta
+from cryptocmd import CmcScraper
+import plotly.express as px
+import numpy as np
+import cufflinks as cf
+
+tab1, tab2, tab3, tab4, tab5 = st.tabs(['모델 1', '모델 2', '모델 3', '모델 4', '통계']) # tab 사전 설정.
+
+name = st.sidebar.selectbox('Name', ['BTC'])
+
+sevendayago = datetime.today() - timedelta(7)
+start_date = st.sidebar.date_input('Start date', sevendayago)
+end_date = st.sidebar.date_input('End date', datetime.today())
 
 with tab5:
         import pandas as pd 
