@@ -40,25 +40,37 @@ WebSocekt은 서버와 클라이언트 양방향 연결이 이루어지는 통�
 # 3️⃣모델(익명으로)설명
 
 
-    def on_close(self,ws, close_status_code, close_msg): # 소켓이 종료하면 실행될 함수
-				print('소켓 종료')
-        self.bot.send_message(self.Group_ID, f'소켓 중지.')
-        
+	import pandas as pd
+	import time
+	from binance.client import Client
+	import time
+	from datetime import datetime
+	from backtesting import Backtest, Strategy
+	from backtesting.lib import crossover
+	from backtesting.test import SMA
+	import talib as ta
 
-
-
-    def on_error(self, ws,error): # 소켓에서 오류가 나오면 실행될 함수
-        print('소켓오류')       
-        self.bot.send_message(self.Group_ID, f'소켓 오류.')
-    
-
-    client=self.client
-
-    BINANCE_SOCKET = "wss://fstream.binance.com/stream?streams=btcusdt@kline_15m" # 데이터 가져올 주소
-    ws = wb.WebSocketApp(BINANCE_SOCKET, on_open=self.on_open, on_close=self.on_close, on_error=self.on_error, on_message=self.handle_socket_message)
-    ws.run_forever(reconnect=3) #소켓 실행 
-
-
+	class SmaCross(Strategy):
+	    upper_bound = 70
+	    lower_bound = 30
+	    def init(self):
+		self.rsi = self.I(ta.RSI, self.data.Close, 14)
+		self.can_buy = False
+		price = self.data.Close
+		high_sma = 100
+		low_sma = 20
+		self.high = self.I(ta.SMA, price, high_sma)
+		self.low = self.I(ta.SMA, price, low_sma)
+	    # 포지션 사이즈 조절, 손절 라인 확정.
+	    def next(self):
+		if crossover(self.rsi, self.upper_bound):
+		    self.buy(sl=.005*self.data.Close[-1],tp=self.data.Close[-1]*.05+self.data.Close[-1],size=100) 
+		    self.can_buy = False
+		elif crossover(self.lower_bound, self.rsi): 
+		    self.position.close()
+		    self.can_buy = True
+		if crossover(self.low,self.high):
+		    self.position.close()
 
 
 
